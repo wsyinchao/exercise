@@ -2,6 +2,7 @@
 #define _SCREEN_H_
 
 #include <string>
+#include <iostream>
 
 class Screen
 {
@@ -12,6 +13,8 @@ public:
 	Screen() = default;
 	Screen(pos wid, pos hei) : width(wid), height(hei), content(wid * hei, ' ') {}
 	Screen(pos wid, pos hei, char ch) : width(wid), height(hei) { content += ch; }
+	Screen(std::istream & is);//使用cin作为默认实参
+	//Screen(std::istream & is, std::string & str);
 
 	//
 	char get() const { return content[cur]; }
@@ -37,6 +40,9 @@ public:
 
 		return *this;
 	}
+
+	//size
+	pos size() const;
 
 private:
 	void do_display(std::ostream& os) const 
